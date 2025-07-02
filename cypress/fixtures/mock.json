@@ -1,0 +1,16 @@
+{
+    "usuario1":
+    {
+        "id":1,
+        "name": "Usuario 1",
+        "username": "mockuser1",
+        "email": "mock1@mail.com"
+    },
+    "usuario2":
+    {
+        "id":2,
+        "name": "Usuario 2",
+        "username": "mockuser2",
+        "email": "mock2@mail.com"
+    }
+}

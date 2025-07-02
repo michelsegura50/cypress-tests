@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Usuarios JSONPlaceholder</title>
+  <style>
+    body { font-family: sans-serif; margin: 2em; }
+    .user-card { border: 1px solid #ccc; padding: 1em; margin: 1em 0; border-radius: 8px; }
+    .user-name { font-weight: bold; font-size: 1.2em; }
+    .user-email { color: gray; }
+  </style>
+</head>
+<body>
+  <h1>Lista de Usuarios</h1>
+  <div id="user-container"></div>
+  <p id="mensaje"></p>
+
+  <script>
+    const container = document.getElementById('user-container');
+    const mensaje = document.getElementById('mensaje');
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.length === 0) {
+          mensaje.textContent = 'No hay usuarios';
+          return;
+        }
+
+        data.forEach(user => {
+          const div = document.createElement('div');
+          div.classList.add('user-card');
+
+          const nombre = document.createElement('p');
+          nombre.classList.add('user-name');
+          nombre.textContent = user.name;
+
+          const email = document.createElement('p');
+          email.classList.add('user-email');
+          email.textContent = user.email;
+
+          div.appendChild(nombre);
+          div.appendChild(email);
+          container.appendChild(div);
+        });
+      })
+      .catch(error => {
+        console.error('Error al obtener usuarios:', error);
+        mensaje.textContent = 'Error al cargar usuarios';
+      });
+  </script>
+</body>
+</html>

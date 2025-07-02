@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-02T18:09:24.715Z",
+    "end": "2025-07-02T18:09:26.189Z",
+    "duration": 1474,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "26bd9643-99e0-4ba1-bc49-427c95ca5af8",
+      "title": "",
+      "fullFile": "cypress\\e2e\\crud.cy.js",
+      "file": "cypress\\e2e\\crud.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c549f029-8dbb-4b56-88f4-9ef023919abf",
+          "title": "Flujo compelto",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Crud",
+              "fullTitle": "Flujo compelto Crud",
+              "timedOut": null,
+              "duration": 962,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const booking = this.datosBooking.Booking;\nconst user = this.users.usuarioAPI;\ncy.loginAPI(user.username, user.password).then(() => {\n  const token = Cypress.env('token');\n  cy.createBooking(booking).then(() => {\n    const bookingid = Cypress.env('bookingid');\n    cy.getBooking(bookingid).then(() => {\n      cy.updateBooking(bookingid).then(() => {\n        cy.deleteBooking(bookingid);\n      });\n    });\n  });\n});",
+              "err": {},
+              "uuid": "773533d3-fdb0-4e52-9cc0-22475f02412c",
+              "parentUUID": "c549f029-8dbb-4b56-88f4-9ef023919abf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Booking con datos dinamicos",
+              "fullTitle": "Flujo compelto Booking con datos dinamicos",
+              "timedOut": null,
+              "duration": 280,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.fixture('datosBooking').then(base => {\n  const bookingDinamico = (0, _generar_datos.generarBookingDinamico)(base.Booking);\n  cy.loginAPI(this.users.usuarioAPI.username, this.users.usuarioAPI.password).then(() => {\n    cy.createBooking(bookingDinamico).then(() => {\n      const bookingid = Cypress.env('bookingid');\n      cy.getBooking(bookingid);\n    });\n  });\n});",
+              "err": {},
+              "uuid": "180ae651-97c4-4602-a525-b695fb9db994",
+              "parentUUID": "c549f029-8dbb-4b56-88f4-9ef023919abf",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Login con varios usuarios",
+              "fullTitle": "Flujo compelto Login con varios usuarios",
+              "timedOut": null,
+              "duration": 185,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "this.avanzado.usuariosAPI.forEach(usuario => {\n  cy.log(`Probando: usuario ${usuario.descripcion}`);\n  cy.loginAPI(usuario.username, usuario.password).then(resp => {\n    if (usuario.esperado === 'success') {\n      expect(resp.body).to.have.property('token');\n      expect(resp.status).to.eq(200);\n    } else {\n      expect(resp.status).to.eq(200);\n    }\n  });\n});",
+              "err": {},
+              "uuid": "2dabb969-f588-4505-9c75-65b49b15bc0d",
+              "parentUUID": "c549f029-8dbb-4b56-88f4-9ef023919abf",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "773533d3-fdb0-4e52-9cc0-22475f02412c",
+            "180ae651-97c4-4602-a525-b695fb9db994",
+            "2dabb969-f588-4505-9c75-65b49b15bc0d"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1427,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "usuariosAPI":
+    [
+        {
+            "username" : "admin",
+            "password" : "password123",
+            "descripcion":"usuario valido",
+            "esperado": "success"
+        },
+        {
+            "username" : "admin",
+            "password" : "wrongpass",
+            "descripcion":"usuario no valido",
+            "esperado": "fail"
+        }
+    ]
+        
+    
+}
