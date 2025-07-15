@@ -5,7 +5,7 @@ describe('Intercepcion de usuarios',function(){
         cy.fixture('mock').as('usuariosMock')
     })
 
-    it('Intercepta y muestra los usuarios mock',function(){
+    it('Intercepta y muestra los usuarios mock conflicto pruebas',function(){
         cy.intercept('GET','https://jsonplaceholder.typicode.com/users',{
             statusCode: 200,
             body: [
